@@ -39,6 +39,16 @@
         .modal, .chat-widget {
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
         }
+        .service-card-container {
+            transition: all 0.3s ease;
+        }
+        .service-card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,20,60,0.1);
+        }
+        .service-details {
+            transition: max-height 0.5s ease-in-out;
+        }
         .chat-question {
             transition: background-color 0.2s ease;
         }
@@ -75,10 +85,11 @@
     <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <a href="#" class="block">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNzpzimLnmuDVX8OKBQdUKf49Nl6r9iemDZP_X_Sy_c0yRS019ZTBZ41p76tGFsQhoFL_ACkSALBC9Q40v4NDRxE4PUzzq_-h1miHExiP7nDQtsuTKjzyVfPekyVBrfxMLwDHDVFoACyrm7PgoQf_2msg=w1920-h567-s-no-gm?authuser=0" alt="Logotipo Via Frete" class="h-9 sm:h-10">
+                <img src="https://viafrete.vercel.app/logotipo.png" alt="Logotipo Via Frete" class="h-11 sm:h-12">
             </a>
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#empresa" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">A Empresa</a>
+                <a href="#servicos" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Serviços</a>
                 <a href="#clientes" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Clientes</a>
                 <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-red-600 text-white font-bold py-2 px-5 rounded-full hover:bg-red-700 transition-colors cta-button">
                     Orçamento Online
@@ -91,6 +102,7 @@
         <!-- Menu Mobile -->
         <div id="mobile-menu" class="hidden md:hidden px-4 sm:px-6 pb-4">
             <a href="#empresa" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">A Empresa</a>
+            <a href="#servicos" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">Serviços</a>
             <a href="#clientes" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">Clientes</a>
             <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="block mt-4 bg-red-600 text-white font-bold py-3 px-5 rounded-full text-center">
                 Orçamento Online
@@ -102,7 +114,7 @@
         <!-- Seção Hero -->
         <section class="hero-bg text-white">
             <div class="container mx-auto px-4 sm:px-6 py-20 text-center md:py-28">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">Seu Patrimônio em Mãos Seguras</h1>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">Sua Mudança com Segurança</h1>
                 <p class="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">Transporte especializado para residências, escritórios e itens delicados. Cuidado, agilidade e segurança em todo o território nacional.</p>
                 <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-white text-blue-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full hover:bg-gray-200 text-base sm:text-lg transition-colors cta-button inline-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" fill="currentColor">
@@ -132,7 +144,7 @@
                     <h2 class="text-3xl sm:text-4xl font-bold text-blue-900">Sobre a Via Frete</h2>
                     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Sua tranquilidade é nosso maior compromisso.</p>
                 </div>
-                <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                     <!-- Coluna do Carrossel (Esquerda) -->
                     <div class="w-full md:w-1/2">
                         <div class="swiper equipe-carousel relative">
@@ -153,11 +165,74 @@
                     </div>
                     <!-- Coluna de Texto (Direita) -->
                     <div class="w-full md:w-1/2">
-                        <p class="text-base text-gray-700 leading-relaxed">Desde 2006, a Via Frete entende que uma mudança transporta mais que objetos: transporta seu patrimônio e suas memórias. Por isso, nossa equipe de profissionais experientes é dedicada a garantir que tudo chegue ao destino com a máxima segurança, cuidado e pontualidade, superando suas expectativas em cada detalhe.</p>
+                        <p class="text-base text-gray-700 leading-relaxed text-justify px-4 sm:px-0">Desde 2006, a Via Frete entende que uma mudança transporta mais que objetos: transporta seu patrimônio e suas memórias. Por isso, nossa equipe de profissionais experientes é dedicada a garantir que tudo chegue ao destino com a máxima segurança, cuidado e pontualidade, superando suas expectativas em cada detalhe.</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Seção Nossos Serviços -->
+        <section id="servicos" class="py-16 sm:py-20 bg-blue-900">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Nossos Serviços</h2>
+                     <p class="text-blue-200 mt-4 max-w-2xl mx-auto">Clique em "Saiba Mais" para ver os detalhes de cada serviço.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Serviço 1: Mudanças -->
+                    <div class="service-card-container bg-blue-800 rounded-lg p-8 flex flex-col text-center shadow-lg">
+                        <div class="mb-6">
+                           <img src="https://images.unsplash.com/photo-1590507944484-625a4221a644?auto=format&fit=crop&w=400&h=250&q=80" alt="Imagem de caixas de mudança" class="w-full h-40 rounded-lg object-cover">
+                        </div>
+                        <h3 class="font-bold text-xl mb-2 text-white">Mudanças</h3>
+                        <p class="text-blue-200">Serviço completo para residências e empresas.</p>
+                        <div class="service-details max-h-0 overflow-hidden">
+                             <p class="text-blue-200 leading-relaxed text-left mt-4">
+                                Dispomos de pessoal especializado, treinados para manuseio, embalagem, e carregamento dos itens, dos mais sensíveis até os mais volumosos. Cuidamos de cada detalhe para que sua mudança seja uma experiência tranquila e segura.
+                             </p>
+                        </div>
+                        <div class="mt-auto pt-6">
+                            <button class="expand-service-btn bg-red-600 text-white font-semibold py-2 px-5 rounded-full hover:bg-red-700 transition-colors">Saiba Mais</button>
+                        </div>
+                    </div>
+
+                    <!-- Serviço 2: Fretes -->
+                     <div class="service-card-container bg-blue-800 rounded-lg p-8 flex flex-col text-center shadow-lg">
+                        <div class="mb-6">
+                            <img src="https://images.unsplash.com/photo-1605728105315-59546054f9d0?auto=format&fit=crop&w=400&h=250&q=80" alt="Imagem de uma van de entregas" class="w-full h-40 rounded-lg object-cover">
+                        </div>
+                        <h3 class="font-bold text-xl mb-2 text-white">Fretes e Entregas</h3>
+                        <p class="text-blue-200">Soluções logísticas para o seu negócio.</p>
+                        <div class="service-details max-h-0 overflow-hidden">
+                             <p class="text-blue-200 leading-relaxed text-left mt-4">
+                                Temos a solução ideal para realizar a entrega do seu produto ao seu cliente. Atendemos diversos segmentos comerciais, desde a distribuição da indústria para os lojistas, até a entrega ao consumidor final com agilidade e segurança.
+                             </p>
+                        </div>
+                         <div class="mt-auto pt-6">
+                            <button class="expand-service-btn bg-red-600 text-white font-semibold py-2 px-5 rounded-full hover:bg-red-700 transition-colors">Saiba Mais</button>
+                        </div>
+                    </div>
+
+                    <!-- Serviço 3: Montagem -->
+                     <div class="service-card-container bg-blue-800 rounded-lg p-8 flex flex-col text-center shadow-lg">
+                        <div class="mb-6">
+                           <img src="https://images.unsplash.com/photo-1621905252507-b3c04e829374?auto=format&fit=crop&w=400&h=250&q=80" alt="Imagem de ferramentas para montagem de móveis" class="w-full h-40 rounded-lg object-cover">
+                        </div>
+                        <h3 class="font-bold text-xl mb-2 text-white">Montagem de Móveis</h3>
+                        <p class="text-blue-200">Desmontagem e montagem com profissionais.</p>
+                         <div class="service-details max-h-0 overflow-hidden">
+                             <p class="text-blue-200 leading-relaxed text-left mt-4">
+                                Nossos profissionais montadores estão aptos a realizar os seguintes serviços: Desmontagem e montagem de armários, guarda roupas, mesas, homes, camas. Retirada e colocação de armários em paredes, painéis de TV, quadros e cortinas.
+                             </p>
+                        </div>
+                         <div class="mt-auto pt-6">
+                            <button class="expand-service-btn bg-red-600 text-white font-semibold py-2 px-5 rounded-full hover:bg-red-700 transition-colors">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Seção Clientes -->
         <section id="clientes" class="py-16 sm:py-20 bg-white">
@@ -178,7 +253,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Avaliação 1 -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
                         <div class="flex items-center mb-4">
                            <div class="text-yellow-500 flex">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
@@ -188,7 +263,7 @@
                         <p class="font-semibold text-gray-800">- Fernanda A.</p>
                     </div>
                     <!-- Avaliação 2 -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
                         <div class="flex items-center mb-4">
                             <div class="text-yellow-500 flex">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
@@ -198,7 +273,7 @@
                         <p class="font-semibold text-gray-800">- Jonathan P.</p>
                     </div>
                     <!-- Avaliação 3 -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
                         <div class="flex items-center mb-4">
                            <div class="text-yellow-500 flex">
                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
@@ -256,7 +331,7 @@
         <div class="container mx-auto px-4 sm:px-6 py-12">
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="text-center md:text-left">
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNzpzimLnmuDVX8OKBQdUKf49Nl6r9iemDZP_X_Sy_c0yRS019ZTBZ41p76tGFsQhoFL_ACkSALBC9Q40v4NDRxE4PUzzq_-h1miHExiP7nDQtsuTKjzyVfPekyVBrfxMLwDHDVFoACyrm7PgoQf_2msg=w1920-h567-s-no-gm?authuser=0" alt="Logotipo Via Frete" class="h-10 mb-4 mx-auto md:mx-0">
+                    <img src="https://viafrete.vercel.app/logotipowhite.png" alt="Logotipo Via Frete" class="h-12 mb-4 mx-auto md:mx-0">
                     <p class="text-gray-400 text-sm">Transformando sua mudança em uma experiência tranquila desde 2006.</p>
                 </div>
                 <div class="text-center md:text-left">
@@ -383,6 +458,40 @@
             }
         });
 
+        // Lógica para expandir/recolher serviços (accordion)
+        const serviceButtons = document.querySelectorAll('.expand-service-btn');
+        const allServiceDetails = document.querySelectorAll('.service-details');
+
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.service-card-container');
+                const details = card.querySelector('.service-details');
+                const isExpanded = details.style.maxHeight && details.style.maxHeight !== '0px';
+
+                // Fecha todos os outros cards antes de abrir o novo
+                allServiceDetails.forEach(d => {
+                    if (d !== details) {
+                        d.style.maxHeight = null;
+                        const otherCard = d.closest('.service-card-container');
+                        if (otherCard) {
+                            otherCard.querySelector('.expand-service-btn').textContent = 'Saiba Mais';
+                        }
+                    }
+                });
+
+                // Abre ou fecha o card clicado
+                if (isExpanded) {
+                    details.style.maxHeight = null;
+                    button.textContent = 'Saiba Mais';
+                } else {
+                    // Adiciona a altura do conteúdo para expandir
+                    details.style.maxHeight = details.scrollHeight + 'px';
+                    button.textContent = 'Ver Menos';
+                }
+            });
+        });
+
+
         // Lógica para o Widget de Chat
         const chatButton = document.getElementById('chat-button');
         const chatWidget = document.getElementById('chat-widget');
@@ -412,4 +521,9 @@
 
 </body>
 </html>
+
+
+
+
+
 
