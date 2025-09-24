@@ -7,13 +7,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper.js para o carrossel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 20, 60, 0.75), rgba(0, 20, 60, 0.75)), url('https://placehold.co/1920x1080/e2e8f0/334155?text=Sua+Mudança+de+Luxo');
+            background-image: linear-gradient(rgba(0, 20, 60, 0.75), rgba(0, 20, 60, 0.75)), url('https://lh3.googleusercontent.com/pw/AP1GczOVhPqvyhGpi8qBMXmQqdc9OQcffwqWdm3kIH9YQ_L_l8p5U5xu4nbgh-9s8H5mPE8ZYLELIDw_FFhiiQAZI_5D-1izNHKoOeZ6h2UB0MjZ9esY7FfKnFQRFsZr0gcva97RUY-pq5Dou4F3qKz2O27uXQ=w1206-h905-s-no-gm?authuser=0');
             background-size: cover;
             background-position: center;
         }
@@ -22,221 +26,371 @@
         }
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .card-service:hover {
-             transform: translateY(-5px);
-             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .animate-loading-bar {
+            animation: loading-bar-animation 1.5s ease-in-out forwards;
+        }
+        @keyframes loading-bar-animation {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        /* Estilos para Modal e Chatbot */
+        .modal, .chat-widget {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .chat-question {
+            transition: background-color 0.2s ease;
+        }
+        .chat-question:hover {
+            background-color: #eef2ff; /* indigo-50 */
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
 
+    <!-- Tela de Carregamento (Preloader) -->
+    <div id="preloader" class="fixed inset-0 bg-white z-[100] flex flex-col justify-center items-center transition-all duration-500 ease-in-out">
+        <img src="https://lh3.googleusercontent.com/pw/AP1GczNzpzimLnmuDVX8OKBQdUKf49Nl6r9iemDZP_X_Sy_c0yRS019ZTBZ41p76tGFsQhoFL_ACkSALBC9Q40v4NDRxE4PUzzq_-h1miHExiP7nDQtsuTKjzyVfPekyVBrfxMLwDHDVFoACyrm7PgoQf_2msg=w1920-h567-s-no-gm?authuser=0" alt="Logotipo Via Frete" class="h-16 mb-6">
+        <div class="w-56 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-red-600 h-1.5 rounded-full animate-loading-bar"></div>
+        </div>
+    </div>
+
     <!-- Cabeçalho e Navegação -->
     <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="block">
-                <img src="https://viafrete.vercel.app/logotipo.svg" alt="Logotipo Via Frete" class="h-10">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNzpzimLnmuDVX8OKBQdUKf49Nl6r9iemDZP_X_Sy_c0yRS019ZTBZ41p76tGFsQhoFL_ACkSALBC9Q40v4NDRxE4PUzzq_-h1miHExiP7nDQtsuTKjzyVfPekyVBrfxMLwDHDVFoACyrm7PgoQf_2msg=w1920-h567-s-no-gm?authuser=0" alt="Logotipo Via Frete" class="h-10">
             </a>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="#servicos" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Serviços</a>
                 <a href="#empresa" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">A Empresa</a>
                 <a href="#clientes" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Clientes</a>
-                <a href="#orcamento" class="bg-red-600 text-white font-bold py-2 px-5 rounded-full hover:bg-red-700 cta-button">
+                <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-red-600 text-white font-bold py-2 px-5 rounded-full hover:bg-red-700 transition-colors cta-button">
                     Orçamento Online
                 </a>
             </nav>
-            <div class="md:hidden">
-                <a href="#orcamento" class="bg-red-600 text-white font-bold py-2 px-4 rounded-full hover:bg-red-700 cta-button text-sm">
-                    Orçamento
-                </a>
-            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#empresa" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">A Empresa</a>
+            <a href="#clientes" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">Clientes</a>
+            <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="block mt-4 bg-red-600 text-white font-bold py-2 px-5 rounded-full text-center">
+                Orçamento Online
+            </a>
         </div>
     </header>
 
     <main>
-        <!-- Seção Principal (Hero) -->
-        <section class="hero-bg text-white py-24 md:py-32">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Seu Patrimônio em Mãos Seguras</h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-200">Transporte especializado para residências, escritórios e itens de luxo. Cuidado, agilidade e segurança em todo o território nacional.</p>
-                <a href="https://api.whatsapp.com/send?phone=5511999893881&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20mudan%C3%A7a." target="_blank" class="bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-blue-700 cta-button inline-block">
-                    Solicitar Orçamento via WhatsApp
+        <!-- Seção Hero -->
+        <section class="hero-bg text-white">
+            <div class="container mx-auto px-6 py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Seu Patrimônio em Mãos Seguras</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">Transporte especializado para residências, escritórios e itens delicados. Cuidado, agilidade e segurança em todo o território nacional.</p>
+                <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-white text-blue-900 font-bold py-4 px-10 rounded-full hover:bg-gray-200 text-lg transition-colors cta-button inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-6 w-6 mr-3" fill="currentColor">
+                        <path d="M380.9 97.1c-41.9-42-97.7-65.1-157-65.1-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480 117.7 449.1c32.4 17.7 68.9 27 106.1 27l.1 0c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s56.2 81.2 56.1 130.5c0 101.8-84.9 184.6-186.6 184.6zM325.1 300.5c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3s19.9 53.7 22.6 57.4c2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4s4.6-24.1 3.2-26.4c-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                    Solicitar Orçamento Imediato
                 </a>
-            </div>
-        </section>
-
-        <!-- Seção de Credenciais ANTT -->
-        <section id="credenciais" class="bg-gray-100 py-8">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-16">
-                    <div class="flex items-center space-x-4">
-                        <span class="font-semibold text-xl text-gray-700">Licenciada</span>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/ANTT_logo.svg/1280px-ANTT_logo.svg.png" alt="Logotipo ANTT" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x50?text=ANTT';">
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <span class="font-semibold text-xl text-gray-700">Segurada</span>
-                        <img src="https://logodownload.org/wp-content/uploads/2021/11/chubb-seguros-logo.png" alt="Logotipo Chubb Seguros" class="h-12" onerror="this.onerror=null;this.src='https://placehold.co/150x50?text=Chubb';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Serviços -->
-        <section id="servicos" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Nossa Frota à sua Disposição</h2>
-                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Temos o veículo ideal para cada necessidade, desde pequenos carretos a grandes mudanças interestaduais.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Card 1: Pick-up -->
-                    <div class="bg-gray-50 rounded-lg p-8 text-center border border-gray-200 transition-all card-service">
-                        <div class="mb-4 text-blue-800">
-                            <svg class="w-24 h-24 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 013.375-3.375h9.75a3.375 3.375 0 013.375 3.375v1.875m-17.25 4.5h16.5M5.625 12.75a1.125 1.125 0 11-2.25 0 1.125 1.125 0 012.25 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-900 mb-2">Pick-up Carroceria</h3>
-                        <p class="text-gray-600 mb-4 h-24">Ideal para carretos rápidos, pequenas mudanças e acesso a locais restritos como subsolos.</p>
-                        <p class="text-sm text-gray-500">A partir de</p>
-                        <p class="text-3xl font-bold text-blue-800">R$ 99,00</p>
-                    </div>
-                    <!-- Card 2: Caminhão Baú -->
-                    <div class="bg-blue-800 text-white rounded-lg p-8 text-center border-2 border-blue-800 transform md:scale-105 shadow-xl transition-all card-service">
-                        <div class="mb-4">
-                            <svg class="w-24 h-24 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 013.375-3.375h9.75a3.375 3.375 0 013.375 3.375v1.875m-17.25 4.5h16.5M6.375 6h11.25L21 12.75v5.25a1.125 1.125 0 01-1.125 1.125H4.125a1.125 1.125 0 01-1.125-1.125v-5.25L6.375 6z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Caminhão Baú</h3>
-                        <p class="text-blue-100 mb-4 h-24">Perfeito para mudanças residenciais e comerciais completas, com 20m³ de capacidade.</p>
-                        <p class="text-sm text-blue-200">A partir de</p>
-                        <p class="text-3xl font-bold">R$ 299,00</p>
-                    </div>
-                    <!-- Card 3: Caminhão Trucado -->
-                    <div class="bg-gray-50 rounded-lg p-8 text-center border border-gray-200 transition-all card-service">
-                        <div class="mb-4 text-blue-800">
-                             <svg class="w-24 h-24 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 013.375-3.375h9.75a3.375 3.375 0 013.375 3.375v1.875m-17.25 4.5h16.5M6 12.75h12m-12 0a2.25 2.25 0 01-2.25-2.25V6.75a2.25 2.25 0 012.25-2.25h12a2.25 2.25 0 012.25 2.25v3.75a2.25 2.25 0 01-2.25 2.25m-12 0A2.25 2.25 0 004.5 15v.75a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-.75a2.25 2.25 0 00-1.5-2.122" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-900 mb-2">Caminhão Trucado</h3>
-                        <p class="text-gray-600 mb-4 h-24">Para grandes volumes e mudanças intermunicipais ou interestaduais com máxima segurança.</p>
-                        <p class="text-sm text-gray-500">A partir de</p>
-                        <p class="text-3xl font-bold text-blue-800">R$ 499,00</p>
-                    </div>
-                </div>
             </div>
         </section>
         
-        <!-- Seção Diferenciais -->
-        <section class="py-20 bg-gray-50">
+        <!-- Seção Credenciais -->
+        <section class="bg-white py-12">
             <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Compromisso com a Excelência</h2>
-                        <p class="text-gray-600 mb-6">Oferecemos um serviço pautado pela discrição, eficiência e o máximo cuidado com seus bens.</p>
-                        <div class.="space-y-4">
-                            <div class="flex items-start p-4 bg-white rounded-lg border border-gray-200">
-                                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mr-4 mt-1">
-                                    <svg class="w-4 h-4" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 479.302 479.302" xml:space="preserve" fill="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M9.948,159.572c-0.2,2.6,1,4.5,2.4,6.5c1,1.5,2.2,3.2,2.4,4.9c0.3,2.8,1.8,3.5,4.1,4c2.6,0.6,4.7,2,5.4,4.8 c0.7,2.6,2.1,3.3,4.7,2.3c5.1-1.9,10.2-4,15.3-6c-0.1,0.6-0.3,1.5-0.4,2.4c-0.4,3.6-1,7.2-0.9,10.7c0.1,3.7,2.4,6,5.8,6 c6.6,0,13.1-0.1,19.7-0.3c3.2-0.1,6-1.3,8.2-3.8c0.3-0.3,0.7-0.8,1-0.7c3.9,0.7,6-2,8.4-4.3c2.7-2.6,5.8-4.4,9.8-4.3 c2.5,0.1,5.1-0.7,8-1.1c0,0,0.4,0.5,0.7,1.1c1.4,2.2,2,4.2,0.3,6.7c-0.8,1.3-0.4,3.4-0.5,5.2c-0.1,1.3,0.2,2.8-0.2,4 c-0.6,1.9-0.7,3.6,0.1,5.5c2.2,4.8,5.6,8.6,9.6,11.9c2.2,1.8,4.6,2.4,7.4,1.9c0.9-0.1,2,0.4,2.9,0.9c1.2,0.7,2.1,2.1,3.3,2.4 c1.8,0.5,3,1.3,4.1,2.6c1.5,1.8,3.4,3,5.8,2.6c1.8-0.3,2.6,0.2,3.1,2c1.1,3.8,3.4,4.9,7.3,4c1.1-0.3,2.6,0,3.7,0.5 c2.5,1.1,4.8,2.6,7.2,3.7c1.6,0.7,2.4,1.7,2.6,3.3c0.3,2.3,0.5,4.5,0.5,6.8c-0.1,3.1,0.3,6.3-2.4,8.8c-0.4,0.3-0.6,1.101-0.6,1.601 c0.3,2.6,0.8,5.1,2.9,6.899c3.5,3,7.6,4.8,12.2,5.2c2,0.2,4.1,0,6.2,0.1c2.7,0.101,3.6,1.4,2.9,3.9c-0.2,0.6-0.4,1.3-0.7,1.9 c-2.6,5.3-1,8.8,4.5,10.5c1.1,0.399,2.7,1.6,2.7,2.399c0.2,4.2,2,8.7-1.3,12.601c-0.4,0.399-0.8,0.899-0.9,1.5 c-0.2,1.1-0.6,2.5-0.2,3.399c0.5,1.101,0.5,1.7-0.2,2.601c-1.5,2-2.5,4-2.7,6.6c-0.3,5.3-1,10.6-1.4,15.9 c-0.2,2.6-0.3,5.3-0.2,7.899c0.1,2.2,1.3,4.101,3.5,4.601c3,0.6,6.1,1,9.1,1c8.1,0,14.1,7.199,12.7,15.199 c-0.4,2.101-0.3,4.4-0.2,6.601c0.1,2.8,1,3.399,3.8,2.899c1.3-0.199,2.6-0.6,3.9-0.699c3.2-0.2,5.5,1.8,5.1,5 c-0.4,3.6-1.1,7.3-2.3,10.699c-1.3,3.801-1.6,3.7,1.7,6.001c3.3,2.3,4.6,5.5,4.1,9.399c-0.3,2.601-1,5.101-1.1,7.7 c-0.1,4-2.8,6.1-5.8,7.1c-8.1,2.5-14.3,7.601-20.3,13.101c-3.7,3.399-6.9,7.2-10.3,10.899c-1.9,2-2,3.301-0.5,5.7 c0.4,0.7,0.8,1.4,1.3,2c2.4,3.101,5.5,5.7,4.5,10.4c-0.4,1.899,1,2.8,2.9,2.2c0.8-0.2,1.5-0.601,2.2-1.101c1.6-1.1,2.9-0.5,3.9,0.7 c3.9,4.9,8.3,9.1,13.2,12.8c2.2,1.601,3.9,3.7,4.3,6.4c0.3,2.3,1.7,2.5,3.5,2.3c1.7-0.2,3.3-0.7,5.1-1.1c1.1,2.3,2.8,2.6,4.4,0.6 c0.7-0.9,1.5-1.9,1.7-3c1.1-4.5,3.2-8.2,6.6-11.4c3.299-3.1,6.2-6.6,9.4-10.1c0.2,0.2,0.6,0.4,0.899,0.7 c2.5,2.6,5.4,2.399,7.301-0.601c1.1-1.8,2.199-3.6,3.1-5.6c1.6-3.4,3.9-5.9,6.9-8.1c2.1-1.601,3.899-3.601,5.399-5.7 c2.4-3.5,3.2-7.8,3.7-11.9c0.5-3.6,0.7-7.3,1.1-10.899c0.101-1.4,0.4-2.801,0.601-4.101c0.7-4.5,4.5-8,3.899-13 c1,0.5,1.7,1,2.5,1.4c1.4,0.6,2.5,0.399,3.2-1.2c1.5-3.6,4.7-5.3,8.101-6.3c2.7-0.9,5-2.101,7.2-3.9c2.5-2.1,5.1-4.1,8.8-3.9 c5.399,0.2,10.399-1.1,14.2-5.3c3.3-3.6,6.8-4.2,11-1.8c2.699,1.5,5.699,1.7,8.8,1.3c6-0.899,11.2-3.5,16.1-6.899 c3.8-2.7,7.2-5.801,9.2-10.2c1.3-2.9,3.3-5.2,6.4-6.4c1-0.399,2-0.8,2.699-1.5c3.9-4.7,7.801-9.5,11.601-14.399 c1.899-2.5,1-5.5,1.2-8.301c0.1-2.6,0.399-5.399,2.699-6.899c4-2.7,6-6.601,7.601-10.8c0.7-1.7,0.7-3.7,1-5.5 c-0.101-0.301,0.6-0.5,0.7-0.801c0.399-1.199,0.699-2.5,0.899-3.8c0.7-3.6,1.4-7.1,2-10.7c0.7-4.3,1.3-8.6,1.9-12.899 c0.6-4,0.8-8,1.6-12c0.5-2.8,2.101-5.3,5-6.2c9.4-3.2,15.9-9.3,18.7-18.8c1.4-4.6,4.1-6.8,8.6-7.6c5.101-0.9,9.801-2.7,12.801-7.3 c0.8-1.3,1.3-2.8,2.3-3.9c2.6-2.8,5.399-5.4,8.1-8.1c6.4-6.3,8.8-13.7,6.601-22.5c-0.801-3-1.2-6-1.7-9.1c-0.4-2.5-0.2-5.2-0.9-7.6 c-1.6-5.3-4.6-9.5-10.7-10.5c-1.699-0.3-3.3-0.8-5-1c-3.699-0.6-6.8-2.2-9.1-5c-4-5.1-7.9-10.4-11.6-15.7 c-2.4-3.4-4.2-7.1-9.101-7.5c-0.6,0-1.3-0.9-1.7-1.6c-2-3.5-5-5.3-8.899-5.7c-2.101-0.2-4.4-0.4-6.3,0.2 c-5.5,1.8-10.5,0.2-15.4-1.7c-2-0.7-4-2-5.4-3.5c-1.8-1.9-4-2.8-6.399-3.1c-4.601-0.7-8.9,0.6-13.101,2.2 c-2.1,0.8-4.3,1.6-6.699,2.4c1.1-4.3,2.1-8.2,3.199-12.1c0.5-1.9,0.301-2.9-1.699-3.7c-3-1.3-5.801-3-8.601-4.7 c-1.399-0.9-2.5-2.2-4-3.1c-5.3-3.2-11.1-5-17.2-6.2c-6.8-1.3-13.199-0.3-18.8,4.1c-2.8,2.2-5.6,4.3-8.3,6.3 c-0.9-2.1-2.2-3.9-3.8-5.3c1-0.1,2.1-0.4,3.1-0.8c2-0.8,4-1.7,5.7-2.9c3-2.3,6-4.7,8.7-7.4c1.6-1.6,1.2-2.9-0.9-3.9 c-5.8-2.8-12-3.9-18.399-3.9c-3,0-5.501,1.2-7.801,2.6c-2.399,1.5-4.5,3.3-7,4.7c-2,1.1-4.1,2.2-7.1,1.5 c0.899-1.9,1.399-3.8,2.5-5.3c4.5-6.2,10.1-11.1,16.8-14.8c1.9-1,3.5-2.3,3.101-4.8c-0.3-1.8,0.399-3,1.8-4 c1.1-0.8,2.1-1.7,3.5-2.9c-1.3-0.7-2.101-1.3-3.101-1.6c-1.899-0.7-4.1-1-5.899-1.9c-1.2-0.6-2.4-1.8-2.7-3 c-0.601-2.3-0.4-4.8-1-7.2c-1.2-5.5-2.7-11-4-16c-2.5-1.7-4.101-0.7-5.5,0.9c-1.4,1.5-3,2.8-4.3,4.4c-0.601,0.8-1.101,2-0.9,3 c0.4,3,0.4,3.5-2.4,4.2c-2.5,0.7-4,2.2-4.8,4.4c-0.6,1.6-1.8,2.4-3.399,2.8c-4.5,1.1-8.9,0.8-13.4,0.2c-3.399-0.5-6.5-1.3-8.5-4.4 c-0.399-0.7-1.399-1.2-2.1-1.3c-2.9-0.5-5.8-0.8-8.7-1.3c-2.1-0.4-3.3,0.3-4.5,2.1c-2.1,3.4-7.1,7.2-12.6,5 c-3.5-1.4-7.2-0.9-10.8,0.3c-3.4,1.1-6.9,1.9-10.4,2.5c-2.5,0.5-5,0.1-7-1.8c-4.3-4-6.8-9-7.5-14.9c-0.6-4.9,1.3-9.1,3.8-13 c2.7-4.1,2.6-4.6-1.1-7.5c-1.8-1.4-2.5-3-2-5.2c0.2-0.9,0.8-1.8,0.6-2.5c-0.2-1.1-0.7-2.5-1.5-2.9c-2.3-1.2-4.1-0.5-5.9,2 c-2.5,3.3-4.7,7-9.2,7.7c-3.2,0.5-6.5,0.8-9.8,1.1c-0.8,0.1-1.6-0.2-2.4-0.1c-2.5,0.1-3.8,1.8-5,3.7c-2.1,3.5-3,3.6-6,0.8 c-0.3-0.2-0.5-0.6-0.8-0.7c-2.7-1.4-5.3-2.8-8-3.9c-0.7-0.3-2.2,0.4-2.7,1.1c-1.8,2.5-1.8,5.4-1.1,8.3c1,3.8,2.8,6.7,6.7,8.5 c3.4,1.6,3.2,5.7,0,7.5c-1,0.6-2.2,0.9-3.2,1.5c-6.8,3.9-13.6,7.8-20.4,11.8c-1.4,0.9-2.7,0.9-4.1,0.3c-2.6-1.2-5.1-1.3-7.5,0.5 c-0.3,0.3-1.2,0.3-1.6,0c-3.1-2.1-5.6-4.6-6.3-8.6c-0.6-3.5-2.3-6.1-6.1-7c-2.6-0.6-4.9,0-7.3,0.8c-3.4,1.1-6.7,1.2-10.3,0.7 c-2.5-0.4-5.1-0.3-7.6,0c-1.7,0.2-2.8,1.6-3,3.4c-0.2,1.9,1,3,2.6,3.7c1.1,0.5,2.3,0.8,3.1,1.6c0.8,0.7,1.5,1.9,1.5,2.8 c0,0.7-1.1,1.7-1.9,2c-1.2,0.4-2.6,0.5-3.9,0.5c-4.7,0.2-6.9,3.1-5,7.4c1.2,2.7,2.9,5.3,4.8,7.6c3.5,4.5,3.9,8.7,0.7,13.3 c-1.8,2.6-3.5,5.3-2.5,8.8c0.2,0.7-0.1,1.6-0.5,2.3c-1.4,3-2.4,6.1-2.3,9.6c0,0.8-0.3,1.7-0.6,2.5c-0.5,1.8-1.4,3.6-1.5,5.4 c-0.3,4.4-2.2,6-6.3,4.7c-3.9-1.3-7.3-0.7-10.8,1.2c-1.2,0.6-2.7,0.7-4.1,0.8c-1.6,0-3.2-0.3-4.9-0.5c-0.4,2.2-1.9,3.1-3.9,3.4 c-0.5,0.1-0.9,0.4-1.3,0.7c-6.4,4.4-8.7,11.2-10.4,18.3c-0.5,1.9-0.6,3.7-2.9,4.8c-1.5,0.7-2.8,2.3-3.8,3.8 c-2.5,3.7-2.4,6.4,0.4,9.9C9.148,155.472,10.148,157.271,9.948,159.572z"></path> </g> </g></svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg">Abrangência Nacional</h4>
-                                    <p class="text-gray-600">Atendemos com a mesma qualidade e eficiência em todo o território nacional.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-lg border border-gray-200">
-                                 <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mr-4 mt-1">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg">Pagamento Facilitado</h4>
-                                    <p class="text-gray-600">Aceitamos cartões de débito e crédito, com parcelamento em até 12 vezes.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-lg border border-gray-200">
-                                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mr-4 mt-1">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg">Disponibilidade Total</h4>
-                                    <p class="text-gray-600">Flexibilidade para agendar sua mudança 24 horas por dia, 7 dias por semana.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hidden md:block">
-                        <img src="https://placehold.co/600x450/3b82f6/ffffff?text=Equipe+Especializada" alt="Equipe Via Frete" class="rounded-lg shadow-xl">
+                <div class="flex justify-center items-center space-x-12">
+                     <div class="flex items-center space-x-3">
+                        <span class="font-semibold text-lg text-gray-700">Licenciada</span>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Logo_ANTT.svg" alt="Logo ANTT" class="h-12">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção Empresa -->
-        <section id="empresa" class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Sobre a Via Frete</h2>
-                 <p class="text-gray-600 mt-4 max-w-3xl mx-auto">
-                    A Via Frete nasceu para oferecer um serviço de mudança que compreende o valor de cada item transportado. Não se trata apenas de levar objetos do ponto A ao B, mas de garantir que seu patrimônio e suas memórias cheguem ao destino com a integridade e o cuidado que merecem.
-                 </p>
+        <!-- Seção Sobre e Equipe Combinadas -->
+        <section id="empresa" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Sobre a Via Frete</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Sua tranquilidade é nosso maior compromisso.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Coluna do Carrossel (Esquerda) -->
+                    <div>
+                        <div class="swiper equipe-carousel relative">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="https://lh3.googleusercontent.com/pw/AP1GczPaDBqfFSyg6KIa9goAbADMhYNOebP4k8Za7ZEERiTTALM2ZKKdDx_feEV1Af60Bm0uXzubiyM-J-10RgftcqmKODr7xSljNpk2Qil125axRu0UpaUuwLY7GEh9hiXHF7Zg3knmSu7B3sE7lo8ja5QK5A=w1206-h905-s-no-gm?authuser=0" alt="Equipe Via Frete em serviço" class="w-full h-80 object-cover rounded-lg shadow-xl"/>
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNwR6f3ZAEFU6THciGXSeTQguYlg-wBEIo366dH0FcrWVu2E-JVENvypB_oudL6YJvgdS8GkYb_EwovOFVuE0hwWSy-Oz9vcYNSEjCtEgC3uxrzqBwZIj8Oy45J1eu-7bbYFud2igsyXBG8kwwRHap4IQ=w678-h905-s-no-gm?authuser=0" alt="Profissional da Via Frete" class="w-full h-80 object-cover rounded-lg shadow-xl"/>
+                                </div>
+                                <div class="swiper-slide">
+                                     <img src="https://lh3.googleusercontent.com/pw/AP1GczN56NH_aQDuMiPupGhiQRYik0VVVKNBxmgZgMXmN9nv3XohXspGBF5EAeoglD0CwOTQMO-oRxPxoQzbGF-2LXIYYrfa_iz__nv9oz0nG5a7uYnoICc2cvdbGwTtCNR-XPjIFfD7Vkk5fnNdWMiTsm0bcA=w509-h905-s-no-gm?authuser=0" alt="Embalagem cuidadosa" class="w-full h-80 object-cover rounded-lg shadow-xl"/>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next text-white"></div>
+                            <div class="swiper-button-prev text-white"></div>
+                        </div>
+                    </div>
+                    <!-- Coluna de Texto (Direita) -->
+                    <div class="text-lg">
+                        <p class="mb-4">Desde 2006, a Via Frete entende que uma mudança transporta mais que objetos: transporta seu patrimônio e suas memórias. Por isso, nossa equipe de profissionais experientes é dedicada a garantir que tudo chegue ao destino com a máxima segurança, cuidado e pontualidade, superando suas expectativas em cada detalhe.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Seção Clientes (Depoimentos) -->
-        <section id="clientes" class="py-20 bg-gray-50">
+        <!-- Seção Clientes -->
+        <section id="clientes" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-blue-900">A Confiança de Nossos Clientes</h2>
+                     <div class="mt-4 inline-flex items-center bg-white rounded-lg p-3 shadow-md border border-gray-200">
+                        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo" class="h-6 mr-3">
+                        <span class="text-yellow-500 flex items-center">
+                           <span class="font-bold text-lg mr-2 text-gray-700">5.0</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                        <p class="text-gray-600 italic">"Serviço impecável. A equipe foi extremamente cuidadosa com nossas obras de arte. Recomendo fortemente."</p>
-                        <p class="font-bold text-right mt-4 text-blue-800">- Mariana C., Curadora de Arte</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Avaliação 1 -->
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                           <div class="text-yellow-500 flex">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic mb-4">"Excelente! Comprometimento e organização! Super indico!"</p>
+                        <p class="font-semibold text-gray-800">- Fernanda A.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                        <p class="text-gray-600 italic">"Contratei para a mudança do nosso escritório. Pontualidade, organização e profissionalismo definem a empresa."</p>
-                        <p class="font-bold text-right mt-4 text-blue-800">- Ricardo M., Diretor de TI</p>
+                    <!-- Avaliação 2 -->
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-500 flex">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic mb-4">"Prestador super atencioso e rápido! Me ajudou em um momento de apuros, serviço nota 1000!"</p>
+                        <p class="font-semibold text-gray-800">- Jonathan P.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                        <p class="text-gray-600 italic">"A melhor experiência de mudança que já tive. Embalaram tudo com um cuidado excepcional. Vale pela tranquilidade."</p>
-                        <p class="font-bold text-right mt-4 text-blue-800">- Família Almeida, Alphaville</p>
+                    <!-- Avaliação 3 -->
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                           <div class="text-yellow-500 flex">
+                               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic mb-4">"Pontualidade, preço justo e serviço excelente!"</p>
+                        <p class="font-semibold text-gray-800">- Aline M.</p>
                     </div>
+                </div>
+                 <div class="text-center mt-12">
+                    <a href="https://www.google.com/search?q=viafrete#lrd=0x94ce1bb90fd310ab:0x996f81d386fd47fc,1" target="_blank" class="text-blue-800 font-semibold hover:underline">
+                        Ver todas as avaliações no Google &rarr;
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Orçamento (CTA Final) -->
-        <section id="orcamento" class="py-20 bg-blue-900 text-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold">Pronto para sua mudança?</h2>
-                <p class="mt-4 mb-8 text-lg max-w-2xl mx-auto text-blue-100">Entre em contato e receba um orçamento detalhado e sem compromisso. Nossa equipe está pronta para planejar cada detalhe.</p>
-                <a href="https://api.whatsapp.com/send?phone=5511999893881&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20mudan%C3%A7a." target="_blank" class="bg-red-600 text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-red-700 cta-button inline-block">
-                    Fale com um Especialista Agora
-                </a>
+        <!-- Seção Abrangência -->
+        <section class="py-20 bg-blue-900 text-white">
+            <div class="container mx-auto px-6">
+                 <div class="grid md:grid-cols-3 gap-12 text-center">
+                    <div>
+                        <div class="flex justify-center mb-4">
+                           <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 479.302 479.302" xml:space="preserve" class="h-16 w-16"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M9.948,159.572c-0.2,2.6,1,4.5,2.4,6.5c1,1.5,2.2,3.2,2.4,4.9c0.3,2.8,1.8,3.5,4.1,4c2.6,0.6,4.7,2,5.4,4.8 c0.7,2.6,2.1,3.3,4.7,2.3c5.1-1.9,10.2-4,15.3-6c-0.1,0.6-0.3,1.5-0.4,2.4c-0.4,3.6-1,7.2-0.9,10.7c0.1,3.7,2.4,6,5.8,6 c6.6,0,13.1-0.1,19.7-0.3c3.2-0.1,6-1.3,8.2-3.8c0.3-0.3,0.7-0.8,1-0.7c3.9,0.7,6-2,8.4-4.3c2.7-2.6,5.8-4.4,9.8-4.3 c2.5,0.1,5.1-0.7,8-1.1c0,0,0.4,0.5,0.7,1.1c1.4,2.2,2,4.2,0.3,6.7c-0.8,1.3-0.4,3.4-0.5,5.2c-0.1,1.3,0.2,2.8-0.2,4 c-0.6,1.9-0.7,3.6,0.1,5.5c2.2,4.8,5.6,8.6,9.6,11.9c2.2,1.8,4.6,2.4,7.4,1.9c0.9-0.1,2,0.4,2.9,0.9c1.2,0.7,2.1,2.1,3.3,2.4 c1.8,0.5,3,1.3,4.1,2.6c1.5,1.8,3.4,3,5.8,2.6c1.8-0.3,2.6,0.2,3.1,2c1.1,3.8,3.4,4.9,7.3,4c1.1-0.3,2.6,0,3.7,0.5 c2.5,1.1,4.8,2.6,7.2,3.7c1.6,0.7,2.4,1.7,2.6,3.3c0.3,2.3,0.5,4.5,0.5,6.8c-0.1,3.1,0.3,6.3-2.4,8.8c-0.4,0.3-0.6,1.101-0.6,1.601 c0.3,2.6,0.8,5.1,2.9,6.899c3.5,3,7.6,4.8,12.2,5.2c2,0.2,4.1,0,6.2,0.1c2.7,0.101,3.6,1.4,2.9,3.9c-0.2,0.6-0.4,1.3-0.7,1.9 c-2.6,5.3-1,8.8,4.5,10.5c1.1,0.399,2.7,1.6,2.7,2.399c0.2,4.2,2,8.7-1.3,12.601c-0.4,0.399-0.8,0.899-0.9,1.5 c-0.2,1.1-0.6,2.5-0.2,3.399c0.5,1.101,0.5,1.7-0.2,2.601c-1.5,2-2.5,4-2.7,6.6c-0.3,5.3-1,10.6-1.4,15.9 c-0.2,2.6-0.3,5.3-0.2,7.899c0.1,2.2,1.3,4.101,3.5,4.601c3,0.6,6.1,1,9.1,1c8.1,0,14.1,7.199,12.7,15.199 c-0.4,2.101-0.3,4.4-0.2,6.601c0.1,2.8,1,3.399,3.8,2.899c1.3-0.199,2.6-0.6,3.9-0.699c3.2-0.2,5.5,1.8,5.1,5 c-0.4,3.6-1.1,7.3-2.3,10.699c-1.3,3.801-1.6,3.7,1.7,6.001c3.3,2.3,4.6,5.5,4.1,9.399c-0.3,2.601-1,5.101-1.1,7.7 c-0.1,4-2.8,6.1-5.8,7.1c-8.1,2.5-14.3,7.601-20.3,13.101c-3.7,3.399-6.9,7.2-10.3,10.899c-1.9,2-2,3.301-0.5,5.7 c0.4,0.7,0.8,1.4,1.3,2c2.4,3.101,5.5,5.7,4.5,10.4c-0.4,1.899,1,2.8,2.9,2.2c0.8-0.2,1.5-0.601,2.2-1.101c1.6-1.1,2.9-0.5,3.9,0.7 c3.9,4.9,8.3,9.1,13.2,12.8c2.2,1.601,3.9,3.7,4.3,6.4c0.3,2.3,1.7,2.5,3.5,2.3c1.7-0.2,3.3-0.7,5.1-1.1c1.1,2.3,2.8,2.6,4.4,0.6 c0.7-0.9,1.5-1.9,1.7-3c1.1-4.5,3.2-8.2,6.6-11.4c3.299-3.1,6.2-6.6,9.4-10.1c0.2,0.2,0.6,0.4,0.899,0.7 c2.5,2.6,5.4,2.399,7.301-0.601c1.1-1.8,2.199-3.6,3.1-5.6c1.6-3.4,3.9-5.9,6.9-8.1c2.1-1.601,3.899-3.601,5.399-5.7 c2.4-3.5,3.2-7.8,3.7-11.9c0.5-3.6,0.7-7.3,1.1-10.899c0.101-1.4,0.4-2.801,0.601-4.101c0.7-4.5,4.5-8,3.899-13 c1,0.5,1.7,1,2.5,1.4c1.4,0.6,2.5,0.399,3.2-1.2c1.5-3.6,4.7-5.3,8.101-6.3c2.7-0.9,5-2.101,7.2-3.9c2.5-2.1,5.1-4.1,8.8-3.9 c5.399,0.2,10.399-1.1,14.2-5.3c3.3-3.6,6.8-4.2,11-1.8c2.699,1.5,5.699,1.7,8.8,1.3c6-0.899,11.2-3.5,16.1-6.899 c3.8-2.7,7.2-5.801,9.2-10.2c1.3-2.9,3.3-5.2,6.4-6.4c1-0.399,2-0.8,2.699-1.5c3.9-4.7,7.801-9.5,11.601-14.399 c1.899-2.5,1-5.5,1.2-8.301c0.1-2.6,0.399-5.399,2.699-6.899c4-2.7,6-6.601,7.601-10.8c0.7-1.7,0.7-3.7,1-5.5 c-0.101-0.301,0.6-0.5,0.7-0.801c0.399-1.199,0.699-2.5,0.899-3.8c0.7-3.6,1.4-7.1,2-10.7c0.7-4.3,1.3-8.6,1.9-12.899 c0.6-4,0.8-8,1.6-12c0.5-2.8,2.101-5.3,5-6.2c9.4-3.2,15.9-9.3,18.7-18.8c1.4-4.6,4.1-6.8,8.6-7.6c5.101-0.9,9.801-2.7,12.801-7.3 c0.8-1.3,1.3-2.8,2.3-3.9c2.6-2.8,5.399-5.4,8.1-8.1c6.4-6.3,8.8-13.7,6.601-22.5c-0.801-3-1.2-6-1.7-9.1c-0.4-2.5-0.2-5.2-0.9-7.6 c-1.6-5.3-4.6-9.5-10.7-10.5c-1.699-0.3-3.3-0.8-5-1c-3.699-0.6-6.8-2.2-9.1-5c-4-5.1-7.9-10.4-11.6-15.7 c-2.4-3.4-4.2-7.1-9.101-7.5c-0.6,0-1.3-0.9-1.7-1.6c-2-3.5-5-5.3-8.899-5.7c-2.101-0.2-4.4-0.4-6.3,0.2 c-5.5,1.8-10.5,0.2-15.4-1.7c-2-0.7-4-2-5.4-3.5c-1.8-1.9-4-2.8-6.399-3.1c-4.601-0.7-8.9,0.6-13.101,2.2 c-2.1,0.8-4.3,1.6-6.699,2.4c1.1-4.3,2.1-8.2,3.199-12.1c0.5-1.9,0.301-2.9-1.699-3.7c-3-1.3-5.801-3-8.601-4.7 c-1.399-0.9-2.5-2.2-4-3.1c-5.3-3.2-11.1-5-17.2-6.2c-6.8-1.3-13.199-0.3-18.8,4.1c-2.8,2.2-5.6,4.3-8.3,6.3 c-0.9-2.1-2.2-3.9-3.8-5.3c1-0.1,2.1-0.4,3.1-0.8c2-0.8,4-1.7,5.7-2.9c3-2.3,6-4.7,8.7-7.4c1.6-1.6,1.2-2.9-0.9-3.9 c-5.8-2.8-12-3.9-18.399-3.9c-3,0-5.501,1.2-7.801,2.6c-2.399,1.5-4.5,3.3-7,4.7c-2,1.1-4.1,2.2-7.1,1.5 c0.899-1.9,1.399-3.8,2.5-5.3c4.5-6.2,10.1-11.1,16.8-14.8c1.9-1,3.5-2.3,3.101-4.8c-0.3-1.8,0.399-3,1.8-4 c1.1-0.8,2.1-1.7,3.5-2.9c-1.3-0.7-2.101-1.3-3.101-1.6c-1.899-0.7-4.1-1-5.899-1.9c-1.2-0.6-2.4-1.8-2.7-3 c-0.601-2.3-0.4-4.8-1-7.2c-1.2-5.5-2.7-11-4-16c-2.5-1.7-4.101-0.7-5.5,0.9c-1.4,1.5-3,2.8-4.3,4.4c-0.601,0.8-1.101,2-0.9,3 c0.4,3,0.4,3.5-2.4,4.2c-2.5,0.7-4,2.2-4.8,4.4c-0.6,1.6-1.8,2.4-3.399,2.8c-4.5,1.1-8.9,0.8-13.4,0.2c-3.399-0.5-6.5-1.3-8.5-4.4 c-0.399-0.7-1.399-1.2-2.1-1.3c-2.9-0.5-5.8-0.8-8.7-1.3c-2.1-0.4-3.3,0.3-4.5,2.1c-2.1,3.4-7.1,7.2-12.6,5 c-3.5-1.4-7.2-0.9-10.8,0.3c-3.4,1.1-6.9,1.9-10.4,2.5c-2.5,0.5-5,0.1-7-1.8c-4.3-4-6.8-9-7.5-14.9c-0.6-4.9,1.3-9.1,3.8-13 c2.7-4.1,2.6-4.6-1.1-7.5c-1.8-1.4-2.5-3-2-5.2c0.2-0.9,0.8-1.8,0.6-2.5c-0.2-1.1-0.7-2.5-1.5-2.9c-2.3-1.2-4.1-0.5-5.9,2 c-2.5,3.3-4.7,7-9.2,7.7c-3.2,0.5-6.5,0.8-9.8,1.1c-0.8,0.1-1.6-0.2-2.4-0.1c-2.5,0.1-3.8,1.8-5,3.7c-2.1,3.5-3,3.6-6,0.8 c-0.3-0.2-0.5-0.6-0.8-0.7c-2.7-1.4-5.3-2.8-8-3.9c-0.7-0.3-2.2,0.4-2.7,1.1c-1.8,2.5-1.8,5.4-1.1,8.3c1,3.8,2.8,6.7,6.7,8.5 c3.4,1.6,3.2,5.7,0,7.5c-1,0.6-2.2,0.9-3.2,1.5c-6.8,3.9-13.6,7.8-20.4,11.8c-1.4,0.9-2.7,0.9-4.1,0.3c-2.6-1.2-5.1-1.3-7.5,0.5 c-0.3,0.3-1.2,0.3-1.6,0c-3.1-2.1-5.6-4.6-6.3-8.6c-0.6-3.5-2.3-6.1-6.1-7c-2.6-0.6-4.9,0-7.3,0.8c-3.4,1.1-6.7,1.2-10.3,0.7 c-2.5-0.4-5.1-0.3-7.6,0c-1.7,0.2-2.8,1.6-3,3.4c-0.2,1.9,1,3,2.6,3.7c1.1,0.5,2.3,0.8,3.1,1.6c0.8,0.7,1.5,1.9,1.5,2.8 c0,0.7-1.1,1.7-1.9,2c-1.2,0.4-2.6,0.5-3.9,0.5c-4.7,0.2-6.9,3.1-5,7.4c1.2,2.7,2.9,5.3,4.8,7.6c3.5,4.5,3.9,8.7,0.7,13.3 c-1.8,2.6-3.5,5.3-2.5,8.8c0.2,0.7-0.1,1.6-0.5,2.3c-1.4,3-2.4,6.1-2.3,9.6c0,0.8-0.3,1.7-0.6,2.5c-0.5,1.8-1.4,3.6-1.5,5.4 c-0.3,4.4-2.2,6-6.3,4.7c-3.9-1.3-7.3-0.7-10.8,1.2c-1.2,0.6-2.7,0.7-4.1,0.8c-1.6,0-3.2-0.3-4.9-0.5c-0.4,2.2-1.9,3.1-3.9,3.4 c-0.5,0.1-0.9,0.4-1.3,0.7c-6.4,4.4-8.7,11.2-10.4,18.3c-0.5,1.9-0.6,3.7-2.9,4.8c-1.5,0.7-2.8,2.3-3.8,3.8 c-2.5,3.7-2.4,6.4,0.4,9.9C9.148,155.472,10.148,157.271,9.948,159.572z"></path> </g> </g></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Abrangência Nacional</h3>
+                        <p class="opacity-80">Atendemos em todo o território nacional com a mesma qualidade e eficiência.</p>
+                    </div>
+                    <div>
+                         <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Atendimento 24/7</h3>
+                        <p class="opacity-80">Estamos disponíveis 24 horas por dia, 7 dias por semana, para sua conveniência.</p>
+                    </div>
+                    <div>
+                         <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Pagamento Facilitado</h3>
+                        <p class="opacity-80">Aceitamos cartões de débito, crédito e parcelamos em até 12 vezes.</p>
+                    </div>
+                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Rodapé -->
-    <footer class="bg-gray-800 text-gray-300 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <h3 class="text-xl font-bold text-white">Via<span class="text-red-500">Frete</span>.com</h3>
-            <div class="mt-4 space-y-1">
-                <p class="font-semibold text-white">(11) 9 9989-3881 (WhatsApp)</p>
-                <p class="font-semibold text-white">viafretetrans@gmail.com</p>
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNzpzimLnmuDVX8OKBQdUKf49Nl6r9iemDZP_X_Sy_c0yRS019ZTBZ41p76tGFsQhoFL_ACkSALBC9Q40v4NDRxE4PUzzq_-h1miHExiP7nDQtsuTKjzyVfPekyVBrfxMLwDHDVFoACyrm7PgoQf_2msg=w1920-h567-s-no-gm?authuser=0" alt="Logotipo Via Frete" class="h-10 mb-4">
+                    <p class="text-gray-400">Transformando sua mudança em uma experiência tranquila desde 2006.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Links Úteis</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="https://wa.me/5511999893881" target="_blank" class="hover:text-white">Whatsapp: (11) 99989-3881</a></li>
+                        <li><a href="mailto:viafretetrans@gmail.com" class="hover:text-white">Email: viafretetrans@gmail.com</a></li>
+                        <li><button id="open-privacy-policy" class="hover:text-white underline">Políticas de Privacidade</button></li>
+                    </ul>
+                </div>
+                <div>
+                     <h3 class="font-bold text-lg mb-4">Orçamento Rápido</h3>
+                     <p class="text-gray-400 mb-4">Clique no botão abaixo e fale conosco agora mesmo.</p>
+                     <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition-colors cta-button inline-block">
+                        Falar no WhatsApp
+                    </a>
+                </div>
             </div>
-            <div class="mt-6 border-t border-gray-700 pt-6">
-                <p class="text-sm text-gray-400">&copy; 2024 Via Frete Transportes. Todos os direitos reservados.</p>
+            <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Via Frete. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Modal de Política de Privacidade -->
+    <div id="privacy-policy-modal" class="modal fixed inset-0 bg-black bg-opacity-60 z-[100] flex justify-center items-center p-4 invisible opacity-0">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative">
+            <button id="close-privacy-policy" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-2xl font-bold mb-4">Política de Privacidade</h2>
+            <div class="space-y-4 text-gray-600">
+                <p>A sua privacidade é importante para nós. É política da Via Frete respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site.</p>
+                <p>Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.</p>
+                <h3 class="font-semibold text-lg pt-2">1. Coleta de Dados</h3>
+                <p>Coletamos informações que você nos fornece diretamente ao solicitar um orçamento, como nome, telefone e e-mail. Estes dados são utilizados exclusivamente para a comunicação sobre o serviço solicitado.</p>
+                <h3 class="font-semibold text-lg pt-2">2. Uso de Cookies</h3>
+                <p>Nosso site pode utilizar cookies para melhorar a experiência de navegação. Cookies são pequenos arquivos de dados que ficam armazenados no seu dispositivo e nos ajudam a entender suas preferências, mas não coletam informações pessoais identificáveis.</p>
+                 <h3 class="font-semibold text-lg pt-2">3. Segurança</h3>
+                <p>A segurança de suas informações pessoais é importante para nós, mas lembre-se que nenhum método de transmissão pela Internet ou método de armazenamento eletrônico é 100% seguro. Embora nos esforcemos para usar meios comercialmente aceitáveis para proteger suas informações pessoais, não podemos garantir sua segurança absoluta.</p>
+                <h3 class="font-semibold text-lg pt-2">4. Links para Sites de Terceiros</h3>
+                <p>O nosso site pode ter links para sites externos que não são operados por nós, como o WhatsApp e o Google. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.</p>
+                <p>Esta política é efetiva a partir de Setembro de 2024.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Widget de Chat -->
+    <div id="chat-button" class="fixed bottom-6 right-6 z-50 cursor-pointer bg-blue-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-900 transition-colors">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+    </div>
+
+    <div id="chat-widget" class="chat-widget fixed bottom-24 right-6 z-50 w-80 bg-white rounded-xl shadow-2xl invisible opacity-0 origin-bottom-right transform scale-95">
+        <div class="bg-blue-800 text-white p-4 rounded-t-xl flex justify-between items-center">
+            <h3 class="font-bold">Olá! Como podemos ajudar?</h3>
+            <button id="close-chat-widget" class="text-white hover:text-gray-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="p-4 space-y-3">
+             <div id="chat-answers" class="text-sm bg-gray-100 p-3 rounded-lg text-gray-700 hidden"></div>
+            <p class="text-sm text-gray-500">Selecione uma opção ou fale conosco para um orçamento.</p>
+            <button class="chat-question w-full text-left p-3 border rounded-lg text-blue-800 border-gray-200" data-answer="Aceitamos cartões de débito, crédito e parcelamos em até 12x.">Quais as formas de pagamento?</button>
+            <button class="chat-question w-full text-left p-3 border rounded-lg text-blue-800 border-gray-200" data-answer="Sim, oferecemos serviço completo de embalagem com material de alta qualidade para proteger todos os seus itens, dos mais robustos aos mais delicados.">Vocês fazem a embalagem?</button>
+            <button class="chat-question w-full text-left p-3 border rounded-lg text-blue-800 border-gray-200" data-answer="Atendemos em todo o território nacional, com frota e equipe preparadas para mudanças locais, intermunicipais e interestaduais.">Qual a área de atendimento?</button>
+            <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="block w-full text-center p-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition-colors">
+                Falar com um especialista
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Lógica para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Lógica para o Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => { preloader.style.display = 'none'; }, 500);
+            }, 1500); 
+        });
+
+        // Lógica para o Carrossel Swiper
+        var swiper = new Swiper('.equipe-carousel', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Lógica para o Modal de Política de Privacidade
+        const openPrivacyBtn = document.getElementById('open-privacy-policy');
+        const closePrivacyBtn = document.getElementById('close-privacy-policy');
+        const privacyModal = document.getElementById('privacy-policy-modal');
+
+        openPrivacyBtn.addEventListener('click', () => {
+            privacyModal.classList.remove('invisible', 'opacity-0');
+        });
+        const closePrivacyModal = () => {
+             privacyModal.classList.add('invisible', 'opacity-0');
+        }
+        closePrivacyBtn.addEventListener('click', closePrivacyModal);
+        privacyModal.addEventListener('click', (e) => {
+            if (e.target === privacyModal) {
+                closePrivacyModal();
+            }
+        });
+
+        // Lógica para o Widget de Chat
+        const chatButton = document.getElementById('chat-button');
+        const chatWidget = document.getElementById('chat-widget');
+        const closeChatWidgetBtn = document.getElementById('close-chat-widget');
+        const chatQuestions = document.querySelectorAll('.chat-question');
+        const chatAnswersDiv = document.getElementById('chat-answers');
+
+        chatButton.addEventListener('click', () => {
+            chatWidget.classList.toggle('invisible');
+            chatWidget.classList.toggle('opacity-0');
+            chatWidget.classList.toggle('scale-95');
+        });
+
+        closeChatWidgetBtn.addEventListener('click', () => {
+            chatWidget.classList.add('invisible', 'opacity-0', 'scale-95');
+        });
+        
+        chatQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.getAttribute('data-answer');
+                chatAnswersDiv.textContent = answer;
+                chatAnswersDiv.classList.remove('hidden');
+            });
+        });
+
+    </script>
+
 </body>
 </html>
-
-
-
-
 
