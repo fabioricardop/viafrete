@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Via Frete - Mudanças e Carretos de Alto Padrão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 20, 60, 0.75), rgba(0, 20, 60, 0.75)), url('https://placehold.co/1920x1080/e2e8f0/334155?text=Sua+Mudança+de+Luxo');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .card-service:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Cabeçalho e Navegação -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold text-blue-900">
+                Via<span class="text-red-600">Frete</span>.com
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#servicos" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Serviços</a>
+                <a href="#empresa" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">A Empresa</a>
+                <a href="#clientes" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Clientes</a>
+                <a href="#orcamento" class="bg-red-600 text-white font-bold py-2 px-5 rounded-full hover:bg-red-700 cta-button">
+                    Orçamento Online
+                </a>
+            </nav>
+            <div class="md:hidden">
+                <a href="#orcamento" class="bg-red-600 text-white font-bold py-2 px-4 rounded-full hover:bg-red-700 cta-button text-sm">
+                    Orçamento
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Principal (Hero) -->
+        <section class="hero-bg text-white py-24 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Seu Patrimônio em Mãos Seguras</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-200">Transporte especializado para residências, escritórios e itens de luxo. Cuidado, agilidade e segurança em todo o território nacional.</p>
+                <a href="https://api.whatsapp.com/send?phone=5511999893881&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20mudan%C3%A7a." target="_blank" class="bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-blue-700 cta-button inline-block">
+                    Solicitar Orçamento via WhatsApp
+                </a>
+                <div class="mt-8 flex justify-center items-center space-x-6 text-sm">
+                    <div class="flex items-center bg-black/20 px-3 py-1 rounded-full">
+                        <svg class="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Empresa Licenciada</span>
+                    </div>
+                    <div class="flex items-center bg-black/20 px-3 py-1 rounded-full">
+                        <svg class="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Carga Assegurada</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Serviços -->
+        <section id="servicos" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Nossa Frota à sua Disposição</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Temos o veículo ideal para cada necessidade, desde pequenos carretos a grandes mudanças interestaduais.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1: Pick-up -->
+                    <div class="bg-gray-50 rounded-lg p-8 text-center border border-gray-200 transition-all card-service">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Pick-up Carroceria</h3>
+                        <p class="text-gray-600 mb-4">Ideal para carretos rápidos, pequenas mudanças e acesso a locais restritos como subsolos.</p>
+                        <p class="text-sm text-gray-500">A partir de</p>
+                        <p class="text-3xl font-bold text-blue-800">R$ 99,00</p>
+                    </div>
+                    <!-- Card 2: Caminhão Baú -->
+                    <div class="bg-blue-800 text-white rounded-lg p-8 text-center border-2 border-blue-800 transform md:scale-105 shadow-xl transition-all card-service">
+                        <h3 class="text-xl font-bold mb-2">Caminhão Baú</h3>
+                        <p class="text-blue-100 mb-4">Perfeito para mudanças residenciais e comerciais completas, com 20m³ de capacidade.</p>
+                        <p class="text-sm text-blue-200">A partir de</p>
+                        <p class="text-3xl font-bold">R$ 299,00</p>
+                    </div>
+                    <!-- Card 3: Caminhão Trucado -->
+                    <div class="bg-gray-50 rounded-lg p-8 text-center border border-gray-200 transition-all card-service">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Caminhão Trucado</h3>
+                        <p class="text-gray-600 mb-4">Para grandes volumes e mudanças intermunicipais ou interestaduais com máxima segurança.</p>
+                        <p class="text-sm text-gray-500">A partir de</p>
+                        <p class="text-3xl font-bold text-blue-800">R$ 499,00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção Diferenciais -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Compromisso com a Excelência</h2>
+                        <p class="text-gray-600 mb-6">Oferecemos um serviço pautado pela discrição, eficiência e o máximo cuidado com seus bens.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-start p-4 bg-white rounded-lg border border-gray-200">
+                                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Abrangência Nacional</h4>
+                                    <p class="text-gray-600">Atendemos com a mesma qualidade e eficiência em todo o território nacional.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-4 bg-white rounded-lg border border-gray-200">
+                                 <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Pagamento Facilitado</h4>
+                                    <p class="text-gray-600">Aceitamos cartões de débito e crédito, com parcelamento em até 12 vezes.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-4 bg-white rounded-lg border border-gray-200">
+                                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Disponibilidade Total</h4>
+                                    <p class="text-gray-600">Flexibilidade para agendar sua mudança 24 horas por dia, 7 dias por semana.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <img src="https://placehold.co/600x450/3b82f6/ffffff?text=Equipe+Especializada" alt="Equipe Via Frete" class="rounded-lg shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Empresa -->
+        <section id="empresa" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Sobre a Via Frete</h2>
+                 <p class="text-gray-600 mt-4 max-w-3xl mx-auto">
+                    A Via Frete nasceu para oferecer um serviço de mudança que compreende o valor de cada item transportado. Não se trata apenas de levar objetos do ponto A ao B, mas de garantir que seu patrimônio e suas memórias cheguem ao destino com a integridade e o cuidado que merecem.
+                 </p>
+            </div>
+        </section>
+
+        <!-- Seção Clientes (Depoimentos) -->
+        <section id="clientes" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900">A Confiança de Nossos Clientes</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                        <p class="text-gray-600 italic">"Serviço impecável. A equipe foi extremamente cuidadosa com nossas obras de arte. Recomendo fortemente."</p>
+                        <p class="font-bold text-right mt-4 text-blue-800">- Mariana C., Curadora de Arte</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                        <p class="text-gray-600 italic">"Contratei para a mudança do nosso escritório. Pontualidade, organização e profissionalismo definem a empresa."</p>
+                        <p class="font-bold text-right mt-4 text-blue-800">- Ricardo M., Diretor de TI</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                        <p class="text-gray-600 italic">"A melhor experiência de mudança que já tive. Embalaram tudo com um cuidado excepcional. Vale pela tranquilidade."</p>
+                        <p class="font-bold text-right mt-4 text-blue-800">- Família Almeida, Alphaville</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Orçamento (CTA Final) -->
+        <section id="orcamento" class="py-20 bg-blue-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Pronto para sua mudança?</h2>
+                <p class="mt-4 mb-8 text-lg max-w-2xl mx-auto text-blue-100">Entre em contato e receba um orçamento detalhado e sem compromisso. Nossa equipe está pronta para planejar cada detalhe.</p>
+                <a href="https://api.whatsapp.com/send?phone=5511999893881&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20mudan%C3%A7a." target="_blank" class="bg-red-600 text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-red-700 cta-button inline-block">
+                    Fale com um Especialista Agora
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-xl font-bold text-white">Via<span class="text-red-500">Frete</span>.com</h3>
+            <div class="mt-4 space-y-1">
+                <p class="font-semibold text-white">(11) 9 9989-3881 (WhatsApp)</p>
+                <p class="font-semibold text-white">viafretetrans@gmail.com</p>
+            </div>
+            <div class="mt-6 border-t border-gray-700 pt-6">
+                <p class="text-sm text-gray-400">&copy; 2024 Via Frete Transportes. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
