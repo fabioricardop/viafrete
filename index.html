@@ -39,10 +39,10 @@
         .modal, .chat-widget {
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
         }
-        .service-card-container {
+        .service-card-container, .client-card {
             transition: all 0.3s ease;
         }
-        .service-card-container:hover {
+        .service-card-container:hover, .client-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0,20,60,0.1);
         }
@@ -54,6 +54,10 @@
         }
         .chat-question:hover {
             background-color: #eef2ff; /* indigo-50 */
+        }
+        /* Estilo para o carrossel de clientes contínuo */
+        .clients-carousel .swiper-wrapper {
+            transition-timing-function: linear !important;
         }
         /* Animação de pulsação para o botão de chat */
         @keyframes pulse-animation {
@@ -90,7 +94,7 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#empresa" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">A Empresa</a>
                 <a href="#servicos" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Serviços</a>
-                <a href="#clientes" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Clientes</a>
+                <a href="#avaliacoes" class="text-gray-600 hover:text-blue-800 font-semibold transition-colors">Avaliações</a>
                 <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-red-600 text-white font-bold py-2 px-5 rounded-full hover:bg-red-700 transition-colors cta-button">
                     Orçamento Online
                 </a>
@@ -103,7 +107,7 @@
         <div id="mobile-menu" class="hidden md:hidden px-4 sm:px-6 pb-4">
             <a href="#empresa" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">A Empresa</a>
             <a href="#servicos" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">Serviços</a>
-            <a href="#clientes" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">Clientes</a>
+            <a href="#avaliacoes" class="block py-2 text-gray-600 hover:text-blue-800 font-semibold">Avaliações</a>
             <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="block mt-4 bg-red-600 text-white font-bold py-3 px-5 rounded-full text-center">
                 Orçamento Online
             </a>
@@ -113,15 +117,59 @@
     <main>
         <!-- Seção Hero -->
         <section class="hero-bg text-white">
-            <div class="container mx-auto px-4 sm:px-6 py-20 text-center md:py-28">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">Sua Mudança com Segurança</h1>
-                <p class="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">Transporte especializado para residências, escritórios e itens delicados. Cuidado, agilidade e segurança em todo o território nacional.</p>
-                <a href="https://wa.me/5511999893881?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20mudança." target="_blank" class="bg-white text-blue-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full hover:bg-gray-200 text-base sm:text-lg transition-colors cta-button inline-flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" fill="currentColor">
-                        <path d="M380.9 97.1c-41.9-42-97.7-65.1-157-65.1-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480 117.7 449.1c32.4 17.7 68.9 27 106.1 27l.1 0c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s56.2 81.2 56.1 130.5c0 101.8-84.9 184.6-186.6 184.6zM325.1 300.5c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3s19.9 53.7 22.6 57.4c2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4s4.6-24.1 3.2-26.4c-1.3-2.5-5-3.9-10.5-6.6z"/>
-                    </svg>
-                    Solicitar Orçamento
-                </a>
+            <div class="container mx-auto px-4 sm:px-6 py-16 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+                <!-- Coluna da Esquerda: Texto -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">Desde 2006 fazendo sua mudança com segurança e alta qualidade.</h1>
+                    <p class="text-base sm:text-lg text-gray-200 max-w-xl mx-auto md:mx-0">Transporte especializado para residências, escritórios e itens delicados. Cuidado, agilidade e segurança em todo o território nacional.</p>
+                    
+                    <!-- Contadores Animados -->
+                    <div id="stats-counter" class="mt-10 grid grid-cols-3 gap-4 sm:gap-8 text-center">
+                        <div>
+                            <h3 class="text-4xl font-bold text-white"><span class="counter" data-target="15">0</span>+</h3>
+                            <p class="text-sm font-medium text-gray-300">Anos de Mercado</p>
+                        </div>
+                        <div>
+                            <h3 class="text-4xl font-bold text-white"><span class="counter" data-target="1200">0</span>+</h3>
+                            <p class="text-sm font-medium text-gray-300">Clientes Atendidos</p>
+                        </div>
+                        <div>
+                            <h3 class="text-4xl font-bold text-white"><span class="counter" data-target="1500">0</span>+</h3>
+                            <p class="text-sm font-medium text-gray-300">Mudanças Realizadas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coluna da Direita: Formulário -->
+                <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-xl">
+                    <h2 class="text-2xl font-bold text-center mb-6">Peça seu Orçamento Rápido</h2>
+                    <form action="#" method="POST" class="space-y-4">
+                        <div>
+                            <label for="name" class="sr-only">Nome</label>
+                            <input type="text" name="name" id="name" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Seu Nome Completo">
+                        </div>
+                        <div>
+                            <label for="phone" class="sr-only">Celular/WhatsApp</label>
+                            <input type="tel" name="phone" id="phone" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Celular com DDD">
+                        </div>
+                        <div>
+                            <label for="pickup" class="sr-only">Endereço de Retirada</label>
+                            <input type="text" name="pickup" id="pickup" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Endereço de Retirada">
+                        </div>
+                        <div>
+                            <label for="delivery" class="sr-only">Endereço de Entrega</label>
+                            <input type="text" name="delivery" id="delivery" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Endereço de Entrega">
+                        </div>
+                        <div>
+                            <label for="items" class="sr-only">Lista de itens</label>
+                            <textarea name="items" id="items" rows="3" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Descreva os principais itens da mudança..."></textarea>
+                        </div>
+                        <p class="text-xs text-center text-gray-300 !mt-2">Para enviar fotos ou vídeos, chame em nosso WhatsApp.</p>
+                        <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 px-5 rounded-full hover:bg-red-700 transition-colors cta-button !mt-6">
+                            Enviar Pedido de Orçamento
+                        </button>
+                    </form>
+                </div>
             </div>
         </section>
         
@@ -137,8 +185,58 @@
             </div>
         </section>
 
+        <!-- Seção Carrossel de Clientes -->
+        <section class="py-16 sm:py-20 bg-gray-50 overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-blue-900">Nossos Clientes</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Empresas que confiam em nosso trabalho para transportar seus bens com segurança.</p>
+                </div>
+            </div>
+            <!-- Carrossel Swiper -->
+            <div class="swiper clients-carousel">
+                <div class="swiper-wrapper">
+                    <!-- Slides de Clientes - Lista Duplicada para Loop -->
+                    <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Empórium Moveleiro" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">Empórium Moveleiro</h3>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Bandeirante Advogados" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">Bandeirante Advogados</h3>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Elétric Sound" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">Elétric Sound</h3>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo T.A.G." class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">T.A.G.</h3>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Outra Praia" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">Outra Praia</h3>
+                    </div>
+                     <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Stylus home" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">Stylus home</h3>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo King Star Colchões" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">King Star Colchões</h3>
+                    </div>
+                     <div class="swiper-slide text-center">
+                        <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Kyodai Transportes" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
+                        <h3 class="font-semibold text-gray-700">Kyodai Transportes</h3>
+                    </div>
+                    <!-- Adicione mais clientes conforme necessário -->
+                </div>
+            </div>
+        </section>
+
+
         <!-- Seção Sobre e Equipe Combinadas -->
-        <section id="empresa" class="py-16 sm:py-20 bg-gray-50">
+        <section id="empresa" class="py-16 sm:py-20 bg-white">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl sm:text-4xl font-bold text-blue-900">Sobre a Via Frete</h2>
@@ -178,16 +276,16 @@
                     <h2 class="text-3xl sm:text-4xl font-bold text-white">Nossos Serviços</h2>
                      <p class="text-blue-200 mt-4 max-w-2xl mx-auto">Clique em "Saiba Mais" para ver os detalhes de cada serviço.</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-3 gap-8 md:items-start">
                     <!-- Serviço 1: Mudanças -->
-                    <div class="service-card-container bg-blue-800 rounded-lg p-8 flex flex-col text-center shadow-lg">
+                    <div class="service-card-container bg-white rounded-2xl p-8 flex flex-col text-center shadow-lg">
                         <div class="mb-6">
                            <img src="https://lh3.googleusercontent.com/pw/AP1GczPyyrIfIwiHQqVCMcxVVEy8KDox8kM5eIkfPLuA3ACwkNgUD3nOHbRQMl-ZhSH_6zF63yUzkg2FbcF509BkQ5xeUsiJ66cQ3iuVFLJSruvHNIxBuYDnj0p-yGwPLsZHthlWdE5tk2utBXJcdyGFc47IyQ=w509-h905-s-no-gm?authuser=0" alt="Imagem de caixas de mudança" class="w-full h-40 rounded-lg object-cover">
                         </div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Mudanças</h3>
-                        <p class="text-blue-200">Serviço completo para residências e empresas.</p>
+                        <h3 class="font-bold text-xl mb-2 text-blue-900">Mudanças</h3>
+                        <p class="text-gray-700">Serviço completo para residências e empresas.</p>
                         <div class="service-details max-h-0 overflow-hidden">
-                             <p class="text-blue-200 leading-relaxed text-left mt-4">
+                             <p class="text-gray-600 leading-relaxed text-left mt-4">
                                 Dispomos de pessoal especializado, treinados para manuseio, embalagem, e carregamento dos itens, dos mais sensíveis até os mais volumosos. Cuidamos de cada detalhe para que sua mudança seja uma experiência tranquila e segura.
                              </p>
                         </div>
@@ -197,14 +295,14 @@
                     </div>
 
                     <!-- Serviço 2: Fretes -->
-                     <div class="service-card-container bg-blue-800 rounded-lg p-8 flex flex-col text-center shadow-lg">
+                     <div class="service-card-container bg-white rounded-2xl p-8 flex flex-col text-center shadow-lg">
                         <div class="mb-6">
                             <img src="https://lh3.googleusercontent.com/pw/AP1GczOyaiOqOwD4ZIBG4fDbyh3tUobHI_MRymaI9ptgTj43nztTpA31mCPpC_Iv_tEJaoi8htoA3eJCZ7s1qt9B8K_rwLwh0Fjwv9PeRzjSbp6gS5789y53F1GrQaaQhFVZkf7liCETxrEpeEWm1VTY3pPx0w=w1206-h905-s-no-gm?authuser=0" alt="Imagem de uma van de entregas" class="w-full h-40 rounded-lg object-cover">
                         </div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Fretes e Entregas</h3>
-                        <p class="text-blue-200">Soluções logísticas para o seu negócio.</p>
+                        <h3 class="font-bold text-xl mb-2 text-blue-900">Fretes e Entregas</h3>
+                        <p class="text-gray-700">Soluções logísticas para o seu negócio.</p>
                         <div class="service-details max-h-0 overflow-hidden">
-                             <p class="text-blue-200 leading-relaxed text-left mt-4">
+                             <p class="text-gray-600 leading-relaxed text-left mt-4">
                                 Temos a solução ideal para realizar a entrega do seu produto ao seu cliente. Atendemos diversos segmentos comerciais, desde a distribuição da indústria para os lojistas, até a entrega ao consumidor final com agilidade e segurança.
                              </p>
                         </div>
@@ -214,14 +312,14 @@
                     </div>
 
                     <!-- Serviço 3: Montagem -->
-                     <div class="service-card-container bg-blue-800 rounded-lg p-8 flex flex-col text-center shadow-lg">
+                     <div class="service-card-container bg-white rounded-2xl p-8 flex flex-col text-center shadow-lg">
                         <div class="mb-6">
                            <img src="https://lh3.googleusercontent.com/pw/AP1GczMYzKRuPnRpZmUA0tQWppWao0FNTyawyH0Tdp_RN3BWBIJHjQ9c9t3qP71MHLdm_0IrLzqKlR3EXRF-JD7NXDptBPAqU-KdLcDhOVD6TFI_iHA5XSrExaqD7yGpts-p0nLkQCeWbvBVYxYbp26QVggyWw=w1608-h905-s-no-gm?authuser=0" alt="Imagem de ferramentas para montagem de móveis" class="w-full h-40 rounded-lg object-cover">
                         </div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Montagem de Móveis</h3>
-                        <p class="text-blue-200">Desmontagem e montagem com profissionais.</p>
+                        <h3 class="font-bold text-xl mb-2 text-blue-900">Montagem de Móveis</h3>
+                        <p class="text-gray-700">Desmontagem e montagem com profissionais.</p>
                          <div class="service-details max-h-0 overflow-hidden">
-                             <p class="text-blue-200 leading-relaxed text-left mt-4">
+                             <p class="text-gray-600 leading-relaxed text-left mt-4">
                                 Nossos profissionais montadores estão aptos a realizar os seguintes serviços: Desmontagem e montagem de armários, guarda roupas, mesas, homes, camas. Retirada e colocação de armários em paredes, painéis de TV, quadros e cortinas.
                              </p>
                         </div>
@@ -234,8 +332,8 @@
         </section>
 
 
-        <!-- Seção Clientes -->
-        <section id="clientes" class="py-16 sm:py-20 bg-white">
+        <!-- Seção Avaliações -->
+        <section id="avaliacoes" class="py-16 sm:py-20 bg-white">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl sm:text-4xl font-bold text-blue-900">A Confiança de Nossos Clientes</h2>
@@ -420,13 +518,13 @@
             }, 1500); 
         });
 
-        // Lógica para o Carrossel Swiper
-        var swiper = new Swiper('.equipe-carousel', {
+        // Lógica para o Carrossel Swiper da Equipe
+        var swiperEquipe = new Swiper('.equipe-carousel', {
             loop: true,
             slidesPerView: 1,
             spaceBetween: 30,
             autoplay: {
-                delay: 3000,
+                delay: 4000,
                 disableOnInteraction: false,
             },
             navigation: {
@@ -434,6 +532,33 @@
                 prevEl: '.swiper-button-prev',
             },
         });
+
+        // Lógica para o Carrossel de Clientes
+        var swiperClients = new Swiper('.clients-carousel', {
+            loop: true,
+            slidesPerView: 2,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            speed: 5000, // Velocidade do scroll
+            breakpoints: {
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    spaceBetween: 50,
+                },
+            }
+        });
+
 
         // Lógica para o Modal de Política de Privacidade
         const openPrivacyBtn = document.getElementById('open-privacy-policy');
@@ -517,8 +642,48 @@
             });
         });
 
+        // Lógica para Animação dos Contadores
+        const statsContainer = document.getElementById('stats-counter');
+        const counters = document.querySelectorAll('.counter');
+
+        const animateOnScroll = (entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                counters.forEach(counter => {
+                    const target = +counter.dataset.target;
+                    counter.textContent = '0';
+                    let current = 0;
+                    const duration = 2000; // ms
+                    const increment = target / (duration / 16); // Aprox. 60fps para animação suave
+
+                    const updateCount = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.ceil(current).toLocaleString('pt-BR');
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.textContent = target.toLocaleString('pt-BR');
+                        }
+                    };
+                    requestAnimationFrame(updateCount);
+                });
+
+                observer.unobserve(statsContainer); // Anima apenas uma vez
+            });
+        };
+
+        const observer = new IntersectionObserver(animateOnScroll, { threshold: 0.5 });
+        if(statsContainer) {
+            observer.observe(statsContainer);
+        }
+
     </script>
 
 </body>
 </html>
+
+
 
