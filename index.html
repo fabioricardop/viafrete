@@ -85,6 +85,30 @@
         </div>
     </div>
 
+    <!-- Barra do Topo -->
+    <div class="bg-blue-900 text-white text-sm">
+        <div class="container mx-auto px-4 sm:px-6 py-2 flex justify-between items-center">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.758a10.024 10.024 0 006.46 6.46l.758-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                <a href="tel:11999893881" class="hover:underline">(11) 99989-3881</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                 <a href="#" target="_blank" class="hover:opacity-80 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                 </a>
+                 <a href="#" target="_blank" class="hover:opacity-80 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                 </a>
+                 <a href="#" target="_blank" class="hover:opacity-80 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                 </a>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Cabeçalho e Navegação -->
     <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
@@ -143,24 +167,24 @@
                 <!-- Coluna da Direita: Formulário -->
                 <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-xl">
                     <h2 class="text-2xl font-bold text-center mb-6">Peça seu Orçamento Rápido</h2>
-                    <form action="#" method="POST" class="space-y-4">
+                    <form id="orcamento-form">
                         <div>
                             <label for="name" class="sr-only">Nome</label>
-                            <input type="text" name="name" id="name" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Seu Nome Completo">
+                            <input type="text" name="name" id="name" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Seu Nome Completo" required>
                         </div>
-                        <div>
+                        <div class="mt-4">
                             <label for="phone" class="sr-only">Celular/WhatsApp</label>
-                            <input type="tel" name="phone" id="phone" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Celular com DDD">
+                            <input type="tel" name="phone" id="phone" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Celular com DDD" required>
                         </div>
-                        <div>
+                        <div class="mt-4">
                             <label for="pickup" class="sr-only">Endereço de Retirada</label>
-                            <input type="text" name="pickup" id="pickup" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Endereço de Retirada">
+                            <input type="text" name="pickup" id="pickup" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Endereço de Retirada" required>
                         </div>
-                        <div>
+                        <div class="mt-4">
                             <label for="delivery" class="sr-only">Endereço de Entrega</label>
-                            <input type="text" name="delivery" id="delivery" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Endereço de Entrega">
+                            <input type="text" name="delivery" id="delivery" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Endereço de Entrega" required>
                         </div>
-                        <div>
+                        <div class="mt-4">
                             <label for="items" class="sr-only">Lista de itens</label>
                             <textarea name="items" id="items" rows="3" class="w-full bg-white/20 border-white/30 rounded-lg py-3 px-4 text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition" placeholder="Descreva os principais itens da mudança..."></textarea>
                         </div>
@@ -196,7 +220,7 @@
             <!-- Carrossel Swiper -->
             <div class="swiper clients-carousel">
                 <div class="swiper-wrapper">
-                    <!-- Slides de Clientes - Lista Duplicada para Loop -->
+                    <!-- Slides de Clientes -->
                     <div class="swiper-slide text-center">
                         <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Empórium Moveleiro" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
                         <h3 class="font-semibold text-gray-700">Empórium Moveleiro</h3>
@@ -229,7 +253,6 @@
                         <img src="https://placehold.co/100x100/e2e8f0/334155?text=Logo" alt="Logo Kyodai Transportes" class="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-md">
                         <h3 class="font-semibold text-gray-700">Kyodai Transportes</h3>
                     </div>
-                    <!-- Adicione mais clientes conforme necessário -->
                 </div>
             </div>
         </section>
@@ -679,11 +702,45 @@
         if(statsContainer) {
             observer.observe(statsContainer);
         }
+        
+        // Lógica para o Formulário de Orçamento do Hero
+        const orcamentoForm = document.getElementById('orcamento-form');
+        if (orcamentoForm) {
+            orcamentoForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Coletar os dados do formulário
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const pickup = document.getElementById('pickup').value;
+                const delivery = document.getElementById('delivery').value;
+                const items = document.getElementById('items').value;
+
+                // Montar a mensagem
+                const message = `Olá! Gostaria de solicitar um orçamento pelo site.
+
+*Nome:* ${name}
+*Celular/WhatsApp:* ${phone}
+*Endereço de Retirada:* ${pickup}
+*Endereço de Entrega:* ${delivery}
+*Lista de Itens:*
+${items}
+                `;
+
+                // Número de WhatsApp para onde enviar a mensagem
+                const whatsappNumber = '5511999893881';
+
+                // Criar a URL do WhatsApp
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                // Abrir a URL em uma nova aba
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+
 
     </script>
 
 </body>
 </html>
-
-
 
